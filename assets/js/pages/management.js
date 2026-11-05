@@ -94,13 +94,13 @@ P.management=()=>`
         <div class="col me"><h3>تديره بنفسك</h3>
           <div class="ln"><span>إيجار السنة كاملة</span><b id="g1"></b></div>
           <div class="ln off"><span>إيجار الفترة الفاضية <em id="v1n"></em></span><b id="v1"></b></div>
-          <div class="ln off"><span>ضاع في التأخير</span><b id="l1"></b></div>
+          <div class="ln off"><span>إيجار تأخر دفعه</span><b id="l1"></b></div>
           <div class="ln net"><span>يوصلك فعليًا</span><b id="n1"></b></div>
         </div>
         <div class="col us"><h3>نديره نحن <em id="pkN"></em></h3>
           <div class="ln"><span>إيجار السنة كاملة</span><b id="g2"></b></div>
           <div class="ln off"><span>إيجار الفترة الفاضية <em id="v2n"></em></span><b id="v2"></b></div>
-          <div class="ln off"><span>ضاع في التأخير</span><b id="l2"></b></div>
+          <div class="ln off"><span>إيجار تأخر دفعه</span><b id="l2"></b></div>
           <div class="ln off"><span>أتعاب تُدار <em id="feeP"></em></span><b id="fee"></b></div>
           <div class="ln net"><span>يوصلك فعليًا</span><b id="n2"></b></div>
         </div>
