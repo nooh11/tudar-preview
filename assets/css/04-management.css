@@ -1,0 +1,71 @@
+/* تُدار العقارات — tudar.sa
+   صفحة إدارة الأملاك */
+/* management */
+.stat4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:56px;width:100%;max-width:960px}
+.stat4>div{display:grid;gap:4px;justify-items:center}
+.stat4 b{font-family:var(--en);font-size:clamp(34px,4.4vw,52px);font-weight:600;line-height:1.1}
+.stat4 b small{font-family:var(--ar);font-size:.4em;color:var(--burg);margin-inline-start:4px}
+.stat4>div>span{font-size:15px;color:var(--muted)}
+@media (max-width:760px){.stat4{grid-template-columns:1fr 1fr;row-gap:28px}}
+.def{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.def .sec-head{text-align:start;justify-items:start}
+@media (max-width:900px){.def{grid-template-columns:1fr}.def .sec-head{text-align:center;justify-items:center}}
+.cycle{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;counter-reset:c}
+.cycle>div{background:var(--gray);border-radius:18px;padding:22px 18px;display:grid;gap:10px;justify-items:start;position:relative;min-width:0}
+.cycle>div::before{counter-increment:c;content:counter(c);position:absolute;top:16px;inset-inline-end:18px;font-family:var(--en);font-size:14px;color:var(--muted);font-weight:600}
+.cycle b{font-size:17px}
+.cycle .ico{width:40px;height:40px}
+@media (max-width:520px){.cycle{grid-template-columns:1fr 1fr}}
+.cmp-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:start}
+@media (max-width:980px){.cmp-wrap{grid-template-columns:1fr}}
+.cmp-tbl{background:var(--gray);border-radius:var(--r);overflow:hidden;min-width:0}
+.cr{display:grid;grid-template-columns:110px 1fr 1fr;border-bottom:1px solid var(--line)}
+.cr:last-child{border-bottom:0}
+.cr>*{padding:18px 20px;font-size:16px;min-width:0}
+.cr .no{color:var(--muted)}
+.cr .yes{color:var(--ink);font-weight:700;display:flex;gap:10px;background:#fff}
+.cr .yes::before{content:"✓";flex-shrink:0;color:var(--burg);font-family:var(--en)}
+.ch{background:var(--gray)}
+.ch>span{font-size:14px;font-weight:700;color:var(--muted)}
+.ch>span:last-child{color:var(--burg);background:#fff}
+@media (max-width:560px){.cr{grid-template-columns:1fr 1fr}.cr>b{grid-column:1/-1;padding-bottom:0}.ch>span:first-child{display:none}.cr>*{padding:12px 14px;font-size:15px}}
+.vs{background:var(--gray);border-radius:var(--r);padding:34px;display:grid;gap:22px;min-width:0}
+.vs-h{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.vs-h h3{font-size:22px}
+.vs-l{display:flex;gap:16px;font-size:14px;color:var(--muted)}
+.vs-l span{display:inline-flex;gap:6px;align-items:center}
+.vs-l i{width:12px;height:12px;display:inline-block;border-radius:3px}
+.k1{background:repeating-linear-gradient(45deg,var(--field) 0 3px,transparent 3px 6px);box-shadow:inset 0 0 0 1.5px var(--field)}.k2{background:var(--burg)}
+.vs-r{display:grid;gap:6px}
+.vs-r b{font-size:16px}
+.vs-bar{display:grid;grid-template-columns:52px 1fr 46px;gap:10px;align-items:center}
+.vs-bar::before{content:"";grid-column:2;grid-row:1;height:10px;border-radius:10px;background:#E3E3E8}
+.vs-bar i{grid-column:2;grid-row:1;justify-self:start;transform-origin:100% 50%;display:block;height:10px;border-radius:10px;background:repeating-linear-gradient(45deg,var(--field) 0 3px,transparent 3px 6px);box-shadow:inset 0 0 0 1.5px var(--field)}
+.vs-bar.b i{background:var(--burg);box-shadow:none}
+.vs-bar small{grid-column:1;grid-row:1;font-size:13px;color:var(--muted)}
+.vs-bar em{grid-column:3;grid-row:1;font-style:normal;font-size:14px;color:var(--ink);font-weight:600;text-align:left}
+.vs-bar.a em{color:var(--muted)}
+.vs-n{font-size:13px;color:var(--muted)}
+.hid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.hid>div{background:var(--bg);border-radius:var(--r);padding:26px 22px;display:grid;gap:8px;align-content:start;min-width:0}
+.hid b{font-size:19px;display:flex;gap:10px;align-items:center}
+.hid b::before{content:"";width:8px;height:8px;background:var(--orange);transform:rotate(45deg);flex-shrink:0}
+.hid p{font-size:15px;color:var(--muted)}
+@media (max-width:980px){.hid{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.hid{grid-template-columns:1fr}}
+.who{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media (max-width:900px){.who{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.who{grid-template-columns:1fr}}
+.who>div{background:var(--gray);border-radius:var(--r);padding:30px 26px;display:grid;gap:10px;align-content:start}
+.who h3{font-size:20px}
+.who p{color:var(--muted);font-size:16px}
+.faq-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+.faq-wrap .sec-head{text-align:start;justify-items:start}
+@media (max-width:900px){.faq-wrap{grid-template-columns:1fr}.faq-wrap .sec-head{text-align:center;justify-items:center}}
+.faq{display:grid;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:22px 0;min-height:48px;font-weight:700;font-size:19px;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--en);font-weight:300;font-size:26px;line-height:1;color:var(--burg);flex-shrink:0;transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding-bottom:22px;color:var(--muted)}

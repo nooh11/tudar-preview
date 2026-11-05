@@ -1,0 +1,27 @@
+/* تُدار العقارات — tudar.sa
+   ترتيب الغلاف على الكمبيوتر: العبارة في المنتصف، المبنى أكبر، والبطاقات على الجانبين */
+/* ===== v27 · cover (desktop): headline centred on top, larger building in the middle, cards balanced on both sides ===== */
+.h3-copy h1 .ln{white-space:nowrap}
+@media (min-width:861px){
+  .h3-word{display:none}
+  .h3-copy{top:112px;bottom:auto;left:50%;right:auto;translate:-50% 0;width:max-content;max-width:90%;gap:18px;justify-items:center;text-align:center}
+  .h3-copy h1{font-size:clamp(34px,3.6vw,56px);line-height:1.22;color:var(--burg);text-shadow:none}
+  .h3-copy h1 em{color:var(--orange);text-shadow:none}
+  .h3-ctas{justify-content:center}
+  .hero3 .btn-l{background:rgba(255,255,255,.55);color:var(--burg);box-shadow:inset 0 0 0 1px rgba(74,10,46,.25)}
+  .hero3 .btn-l:hover{background:#fff}
+  .h3-bld{width:min(78%,1020px,calc((clamp(760px,96vh,900px) - 330px) * 1.78))}
+  .h3-side{left:40px;right:40px;bottom:40px;width:auto;display:grid;grid-template-columns:clamp(220px,22vw,300px) 1fr clamp(220px,22vw,300px);grid-template-rows:auto auto;gap:14px;align-items:end;justify-items:stretch}
+  .h3-cards{display:contents}
+  .h3-pill{grid-column:1;grid-row:1;justify-self:start;font-size:12px}
+  .h3-cards .g-dark{grid-column:1;grid-row:2}
+  .h3-cards .g-glass{grid-column:3;grid-row:1;display:grid}
+  .h3-cards .g-light{grid-column:3;grid-row:2}
+  .h3-pill{white-space:nowrap}
+  .g-glass{background:rgba(255,255,255,.6);border-color:rgba(255,255,255,.9);color:var(--ink)}
+  .g-glass b{color:var(--burg)}.g-glass p{color:var(--muted);opacity:1}
+  .g-glass .ga{background:var(--sand);border-color:transparent;color:var(--burg)}
+}
+@media (min-width:861px) and (max-width:1100px){.h3-copy{top:104px}.h3-copy h1{font-size:clamp(30px,3.8vw,40px)}.h3-bld{width:min(86%,900px,calc((clamp(760px,96vh,900px) - 300px) * 1.78))}.h3-cards .g-glass,.h3-pill{display:none}}
+@media (max-width:860px){.h3-copy h1{font-size:clamp(28px,8.4vw,44px)}.h3-copy h1 em{color:#FFB08A}}
+@media (max-width:860px){.h3-cards .gcard{padding-top:78px}.gcard .bico,.g-light .bico{top:16px;right:16px;width:46px;height:46px}}

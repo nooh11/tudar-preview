@@ -1,0 +1,18 @@
+/* تُدار العقارات — tudar.sa
+   تحسينات الأداء (تخفيف التمويه على الجوال) */
+/* ===== v22 · performance ===== */
+/* soft blobs drawn as gradients (no live blur filter), moved on the GPU only */
+.mesh i{filter:none;background:radial-gradient(closest-side,var(--c) 0%,color-mix(in srgb,var(--c) 55%,transparent) 45%,transparent 100%);transform:translateZ(0)}
+.mesh i{animation:none!important;will-change:auto}
+/* cards: frosted look without a per-frame backdrop blur */
+.feat>div,.who>div,.hid>div,.vals>div,.cbox,.split>a,.card,.kpi,.dash,.cmp-tbl,.vs,.calc-in,.calc-out,.form-main,.form-side,.cycle>div,.steps>div,.mdl>div,.ctile,.choice label,.sum,.near div,.fin{
+  -webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:rgba(255,255,255,.66)!important}
+.card:hover,.split>a:hover,.feat>div:hover,.who>div:hover,.cbox:hover{background:rgba(255,255,255,.86)!important}
+:root{--blur:saturate(160%) blur(12px)}
+/* phones and touch screens: still blobs, lighter glass */
+@media (max-width:860px),(hover:none){
+  .mesh i{animation:none!important}
+  .gcard,.h3-pill,.hero3 .btn-l{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  .g-dark{background:rgba(74,10,46,.72)}.g-glass{background:rgba(255,255,255,.2)}.h3-pill{background:rgba(255,255,255,.3)}
+  .mesh::after,.quote::after,footer::after,.cta-band .wrap>.cta2::after{display:none}
+}

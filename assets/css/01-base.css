@@ -1,0 +1,29 @@
+/* تُدار العقارات — tudar.sa
+   الأساس: المتغيرات والألوان والخطوط والتخطيط العام */
+
+/* Layout: Apple-style — white canvas, light-gray tiles, giant centered headlines, pill buttons; burgundy is the only strong color, orange only in the logo key and small markers */
+:root{
+  --burg:#4A0A2E; --burg-2:#5E1440; --orange:#E05526; --sand:#F3E6D5; --navy:#0A2947;
+  --bg:#FFFFFF; --gray:#F5F5F7; --ink:#1D1D1F; --muted:#6E6E73; --line:#D2D2D7; --field:#86868B; --line-d:#D2D2D7;
+  --paper:#FFFFFF;
+  --ar:"Noor","Alexandria","Noto Kufi Arabic",Tahoma,sans-serif;
+  --en:"Alexandria","Noor",system-ui,sans-serif;
+  --w:1080px; --r:22px; --pill:980px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-padding-top:calc(80px + env(safe-area-inset-top,0px));scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--ar);font-size:1.125rem;line-height:1.75;direction:rtl;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:rgba(255,255,255,.86)}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--burg);outline-offset:3px;border-radius:6px}
+h1:focus,h3:focus{outline:none}
+.en,.num{font-family:var(--en);font-variant-numeric:tabular-nums}
+.wrap{max-width:var(--w);margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-weight:700;line-height:1.25;text-wrap:balance;margin:0;color:var(--ink)}
+p{margin:0}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:17px;color:var(--burg);font-weight:700}
+.eyebrow::before{content:"";width:7px;height:7px;background:var(--orange);transform:rotate(45deg)}

@@ -1,0 +1,99 @@
+/* تُدار العقارات — tudar.sa
+   تعديلات الهوية: نموذج «أخبرنا عن مشروعك» البرتقالي، رأس صفحة التواصل، التدرجات */
+/* «أخبرنا عن مشروعك» in brand orange */
+a.btn[data-go="brief"],.nav>a.btn[data-go="brief"],.cta2-t a.btn[data-go="brief"]{background:var(--orange);color:#fff;font-weight:700}
+a.btn[data-go="brief"]:hover,.nav>a.btn[data-go="brief"]:hover,.cta2-t a.btn[data-go="brief"]:hover{background:#C9471C;color:#fff}
+a.btn-k[data-go="brief"] .ci{color:var(--orange)}
+
+/* v14 */
+@media (max-width:980px){
+  .nav{display:grid;grid-template-columns:44px 1fr 44px;gap:0;padding-inline:8px}
+  .nav>.brand{grid-column:2;grid-row:1;justify-self:center}
+  .nav>.menu-t{grid-column:3;grid-row:1;justify-self:end}
+  .nav>a.btn{display:none!important}
+}
+.mq-btn{display:none!important}
+.bico{width:56px;height:56px;display:block;flex-shrink:0;border-radius:50%;box-shadow:0 0 0 4px #fff,0 0 0 6px var(--line)}
+.split .sd{display:none;color:var(--muted);font-size:15px;margin:0}
+.cbox .bico{width:48px;height:48px}
+@media (max-width:760px){
+  .split{display:grid!important;grid-template-columns:1fr;gap:10px;overflow:visible;margin-inline:0;padding-inline:0}
+  .split>*{flex:none}
+  .split>a{grid-template-columns:auto 1fr auto;justify-content:stretch;align-items:center;text-align:start;gap:2px 14px;padding:14px 16px;border-radius:18px}
+  .split>a>.tag,.split>a>ul{display:none}
+  .split>a>.bico{grid-row:1/span 2;width:46px;height:46px}
+  .split>a>h3{grid-column:2;font-size:19px;white-space:nowrap}
+  .split>a>.sd{display:block;grid-column:2;font-size:14px}
+  .split>a>.go{grid-column:3;grid-row:1/span 2;font-size:0;margin:0;width:34px;height:34px;border-radius:50%;background:#fff;justify-content:center}
+  .split>a>.go .arr{font-size:16px}
+}
+.qlines{margin:0 auto;display:grid;gap:4px;justify-items:center;text-align:center;font-size:clamp(32px,5.4vw,64px);font-weight:700;line-height:1.25;color:var(--ink)}
+.ql{display:block;overflow:hidden;padding-block:.06em}
+.qi{display:inline-block}
+.qlines em{font-style:normal;color:var(--burg);background:linear-gradient(var(--orange),var(--orange)) no-repeat right bottom/0% 4px;transition:background-size .9s cubic-bezier(.25,.1,.25,1);padding-bottom:4px}
+.qlines.lit em{background-size:100% 4px}
+@media (prefers-reduced-motion:reduce){.qlines em{background-size:100% 4px}}
+.quote{padding-block:84px}
+.manifest.qlines{max-width:none}
+.hero2.hsplit .h2-pic{max-width:520px}
+.hero2.hsplit .h2-img{-webkit-mask-image:linear-gradient(to top,transparent 0%,#000 26%),linear-gradient(to right,transparent 0%,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(to top,transparent 0%,#000 26%),linear-gradient(to right,transparent 0%,#000 7%,#000 93%,transparent 100%);-webkit-mask-composite:source-in;mask-composite:intersect;filter:drop-shadow(0 30px 40px rgba(120,40,10,.18))}
+@media (max-width:860px){.hero2.hsplit .h2-img{-webkit-mask-image:linear-gradient(to top,transparent 0%,#000 30%),linear-gradient(to right,transparent 0%,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(to top,transparent 0%,#000 30%),linear-gradient(to right,transparent 0%,#000 7%,#000 93%,transparent 100%)}.hero2.hsplit .h2-pic{max-width:360px}}
+.hero2 a.btn-k[data-go="brief"]{background:var(--burg);color:#fff}
+.hero2 a.btn-k[data-go="brief"]:hover{background:#350720}
+.hero2 a.btn-k[data-go="brief"] .ci{color:var(--burg)}
+.foot-b{justify-content:center}
+
+/* v15: stacked hero with the transparent building */
+.hero2.hsplit .h3-grid{grid-template-columns:1fr;gap:34px;justify-items:center}
+.hero2.hsplit .h2-txt{justify-items:center;text-align:center}
+.hero2.hsplit .intro-c{justify-content:center}
+.hero2.hsplit .lead{max-width:560px}
+.hero2.hsplit{padding-bottom:0}
+.hero2.hsplit .h2-pic{max-width:980px;width:100%;justify-self:center;border-bottom:1px solid rgba(29,29,31,.22)}
+.hero2.hsplit .h2-img,.hero2.hsplit .h2-img{-webkit-mask-image:none!important;mask-image:none!important;filter:none}
+.hero2.hsplit .hs.flip .hs-l,.hero2.hsplit .hs-l{inset-inline-start:auto;inset-inline-end:calc(100% + 6px)}
+@media (max-width:860px){.hero2.hsplit .h2-pic{max-width:none}.hero2.hsplit .h3-grid{gap:22px}}
+.xl-v{display:none}
+.hero2.hsplit .h2-pic{border-bottom:0!important}
+@media (max-width:700px){.hero2.hsplit .hs:not(:first-child){display:none}.hero2.hsplit .hs-l{inset-inline-start:auto;inset-inline-end:auto;left:auto;right:calc(100% + 6px)}}
+
+/* contact header: brand gradient (burgundy under the text on the right, sand fading to the left) */
+.phead.ph-grad{background:linear-gradient(258deg,#4A0A2E 0%,#7C1B2E 24%,#E05526 56%,#EDAE8E 82%,#F3E6D5 100%);text-align:right;padding-bottom:110px}
+.phead.ph-grad .wrap{justify-items:start}
+.phead.ph-grad h1{color:#fff;max-width:11ch}
+.phead.ph-grad p{color:rgba(255,255,255,.92);max-width:440px}
+.phead.ph-grad .crumb{color:#F3E6D5}
+@media (max-width:700px){.phead.ph-grad{background:linear-gradient(170deg,#4A0A2E 0%,#6E1630 45%,#B23A27 80%,#E05526 100%);padding-bottom:72px}}
+
+/* v18: brand gradient on the home cover and the footer */
+:root{--grad:linear-gradient(258deg,#4A0A2E 0%,#7C1B2E 22%,#E05526 44%,#EDAE8E 60%,#F3E6D5 76%,#F3E6D5 100%);--grad-f:linear-gradient(258deg,#4A0A2E 0%,#7C1B2E 45%,#C2441F 100%);--grad-v:linear-gradient(180deg,#4A0A2E 0%,#7C1B2E 30%,#E05526 62%,#EDAE8E 86%,#F3E6D5 100%)}
+.hero2.hsplit{background:var(--grad);padding:132px 0 0}
+.hero2.hsplit .h3-grid{grid-template-columns:.95fr 1.05fr;gap:24px;align-items:end;justify-items:stretch;max-width:1240px}
+.hero2.hsplit .h2-txt{justify-items:start;text-align:start;align-self:center;padding-bottom:90px}
+.hero2.hsplit h1{color:#fff}
+.hero2.hsplit h1 em{color:#F3E6D5}
+.hero2.hsplit .lead{color:rgba(255,255,255,.9);max-width:470px}
+.hero2.hsplit .intro-c{justify-content:flex-start}
+.hero2 a.btn-k[data-go="brief"]{background:#fff;color:var(--burg)}
+.hero2 a.btn-k[data-go="brief"]:hover{background:#F3E6D5;color:var(--burg)}
+.hero2 a.btn-k[data-go="brief"] .ci{background:var(--burg);color:#fff}
+.hero2.hsplit .btn-l{background:rgba(255,255,255,.16);color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55)}
+.hero2.hsplit .btn-l:hover{background:rgba(255,255,255,.26)}
+.hero2.hsplit .h2-pic{max-width:none;width:100%;justify-self:stretch;align-self:end;border:0}
+.hero2.hsplit .h2-img{display:block;width:100%;height:auto;filter:drop-shadow(0 -10px 40px rgba(74,10,46,.25))}
+.hero2.hsplit .xl-h{background:rgba(255,255,255,.35)}
+@media (max-width:860px){
+  .hero2.hsplit{background:var(--grad-v);padding-top:110px}
+  .hero2.hsplit .h3-grid{grid-template-columns:1fr;gap:26px}
+  .hero2.hsplit .h2-txt{justify-items:center;text-align:center;padding-bottom:0}
+  .hero2.hsplit .intro-c{justify-content:center}
+}
+footer{background:var(--grad-f);color:#fff}
+footer .foot h4{color:#fff}
+footer .foot p{color:rgba(255,255,255,.85)!important}
+footer .foot a{color:rgba(255,255,255,.82)}
+footer .foot a:hover{color:#fff}
+footer .foot-b{color:rgba(255,255,255,.8);border-top-color:rgba(255,255,255,.28)}
+footer .f-lines i{background:rgba(255,255,255,.35)}
+footer .f-lines .star{fill:#F3E6D5}
+@media (max-width:860px){footer{background:linear-gradient(180deg,#4A0A2E 0%,#7C1B2E 50%,#C2441F 100%)}}

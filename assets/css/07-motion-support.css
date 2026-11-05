@@ -1,0 +1,45 @@
+/* تُدار العقارات — tudar.sa
+   أنماط مساندة للحركات عند الظهور */
+/* v10: Spaces-style choreography support */
+#app section,footer{overflow-x:clip}
+.hero2.hsplit h1 .ln{display:inline-block}
+.hero2.hsplit h1 em{font-style:normal;color:var(--burg)}
+.hero2.hsplit h1 .w{color:inherit}
+.star{fill:var(--burg);display:block}
+.xl{position:absolute;top:96px;left:50%;transform:translateX(-50%);width:min(1180px,calc(100% - 40px));height:1px;pointer-events:none;z-index:1}
+.xl-h{position:absolute;inset:0;background:rgba(29,29,31,.22);transform-origin:right center}
+.xl-v{position:absolute;top:-30px;right:56px;width:1px;height:76px;background:rgba(29,29,31,.22);transform-origin:center top}
+.xl .star{position:absolute;top:0;right:56px;width:18px;height:18px;translate:50% -50%}
+.h2-strip{position:absolute;z-index:2;right:-6%;top:30%;width:20%;aspect-ratio:200/742;overflow:hidden;border-radius:3px;box-shadow:0 20px 40px -20px rgba(20,30,50,.45);transition:translate .3s ease}
+.h2-strip img{width:100%;height:100%;object-fit:cover;display:block;max-width:none}
+.hero2.hsplit .h2-pic:hover .h2-strip{translate:14px -16px}
+.hero2.hsplit .hs{translate:-50% -50%;transform:none}
+.hero2.hsplit .h2-pic{overflow:visible}
+@media (max-width:860px){.xl{top:84px}.xl-v,.xl .star{right:28px}.h2-strip{right:2%;width:18%;top:26%}}
+.hz{height:18px;background:linear-gradient(var(--line),var(--line)) center/100% 1px no-repeat;position:relative;transform:none;margin-bottom:6px}
+.hz .star{position:absolute;left:50%;top:50%;width:16px;height:16px;translate:-50% -50%}
+.sec-head h2 .hA,.sec-head h2 .hB{display:inline-block}
+.pm{overflow:hidden}
+.eyebrow::before,.eyebrow.pre::before,.eyebrow.pre.drawn::before{display:none!important;content:none!important}
+.eyebrow{gap:0}
+.pm-in{display:block}
+.menu-t{position:relative;width:44px;height:44px}
+.menu-t .ml{position:absolute;left:11px;right:11px;height:2px;background:currentColor;border-radius:2px;transition:transform .3s ease}
+.menu-t .m1{top:17px}.menu-t .m2{top:25px}
+.menu-t[aria-expanded="true"] .m1{transform:translateY(4px) rotate(45deg)}
+.menu-t[aria-expanded="true"] .m2{transform:translateY(-4px) rotate(-45deg)}
+@media (max-width:980px){
+  .mobile.open{animation:mopen .5s ease both}
+  .mobile.open a{position:relative;border-bottom:0}
+  .mobile.open a::after{content:"";position:absolute;bottom:0;right:0;height:1px;background:var(--line);width:100%;animation:mline .8s ease .6s both}
+}
+@keyframes mopen{from{clip-path:circle(0% at 90% 0%)}to{clip-path:circle(150% at 90% 0%)}}
+@keyframes mline{from{width:0}to{width:100%}}
+.f-lines{position:relative;height:44px;margin-bottom:28px}
+.f-lines i{position:absolute;background:rgba(29,29,31,.22)}
+.fl1{left:0;right:0;top:22px;height:1px;transform-origin:right center}
+.fl2{right:56px;top:0;width:1px;height:44px;transform-origin:center top}
+.fl3{left:56px;top:0;width:1px;height:44px;transform-origin:center top}
+.f-lines .star{position:absolute;right:56px;top:22px;width:16px;height:16px;translate:50% -50%}
+.foot-mask{overflow:hidden}
+@media (prefers-reduced-motion:reduce){.mobile.open,.mobile.open a::after{animation:none}}
