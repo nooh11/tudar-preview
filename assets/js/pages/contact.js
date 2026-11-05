@@ -9,7 +9,7 @@ P.contact=()=>`
     <div class="cbox">${BI.bAq}<span>الموقع الإلكتروني</span><b>tudar.sa</b><button class="copy" data-copy="tudar.sa">نسخ الرابط</button></div>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:start">
-    <div class="sec-head" style="margin:0"><span class="eyebrow">نطاق عملنا</span><h2>المنطقة الشرقية أولًا</h2><p>نخدم الملّاك اليوم في مدن الشرقية، ونتوسّع إلى مناطق أخرى في المرحلة القادمة.</p><div class="cities" style="margin-top:10px"><span>الدمام</span><span>الخبر</span><span>الظهران</span><span>القطيف</span><span>الجبيل</span><span>الأحساء</span><span>رأس تنورة</span></div></div>
-    <div class="ctile"><h3 style="font-size:26px">تفضّل أن نتصل بك؟</h3><p>املأ نموذج «أخبرنا عن مشروعك»، ويتصل بك مدير حساب خلال يوم عمل.</p><a class="btn btn-o" style="justify-self:start" href="#brief" data-go="brief">أخبرنا عن مشروعك <span class="arr">←</span></a></div>
+    <div class="sec-head" style="margin:0"><span class="eyebrow">المناطق التي نخدمها</span><h2>المنطقة الشرقية أولًا</h2><p>نخدم الملّاك اليوم في مدن الشرقية، ونتوسّع إلى مناطق أخرى في المرحلة القادمة.</p><div class="cities" style="margin-top:10px"><span>الدمام</span><span>الخبر</span><span>الظهران</span><span>القطيف</span><span>الجبيل</span><span>الأحساء</span><span>رأس تنورة</span></div></div>
+    <div class="ctile"><h3 style="font-size:26px">تفضّل أن نتصل بك؟</h3><p>املأ نموذج «أخبرنا عن مشروعك»، ويتصل بك أحد فريقنا خلال يوم عمل.</p><a class="btn btn-o" style="justify-self:start" href="#brief" data-go="brief">أخبرنا عن مشروعك <span class="arr">←</span></a></div>
   </div>
 </div></section>`;

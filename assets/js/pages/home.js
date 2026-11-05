@@ -25,7 +25,7 @@ P.home=()=>`
   <div class="sec-head"><span class="eyebrow">خدماتنا</span><h2>خدمتان، وفريق واحد</h2><p>نُدير عقارك المؤجَّر بالكامل، ونسوّق عقارك المعروض للبيع أو الإيجار.</p></div>
   <div class="split">
     <a href="#management" data-go="management"><span class="tag">PROPERTY MANAGEMENT</span>${BI.bMl}<h3>إدارة الأملاك</h3><p class="sd">عقود وتحصيل وصيانة وتقرير شهري</p><ul><li>عقود إيجار موثّقة في منصة إيجار</li><li>تحصيل الإيجارات ومتابعة المتأخرات</li><li>صيانة ونظافة دورية</li><li>تقرير شهري بالأرقام</li></ul><span class="go">اعرف كيف نُدير <span class="arr">←</span></span></a>
-    <a href="#projects" data-go="projects"><span class="tag">REAL ESTATE MARKETING</span>${BI.bAq}<h3>التسويق العقاري</h3><p class="sd">تصوير وحملات ومعاينات حتى إتمام الصفقة</p><ul><li>تصوير احترافي وفيديو قصير</li><li>حملات مستهدفة في المنطقة الشرقية</li><li>فرز المهتمين وتنسيق المعاينات</li><li>تفاوض وإتمام الصفقة</li></ul><span class="go">شاهد مشاريعنا <span class="arr">←</span></span></a>
+    <a href="#projects" data-go="projects"><span class="tag">REAL ESTATE MARKETING</span>${BI.bAq}<h3>التسويق العقاري</h3><p class="sd">تصوير وحملات ومعاينات حتى إتمام الصفقة</p><ul><li>تصوير احترافي وفيديو قصير</li><li>حملات إعلانية موجّهة في المنطقة الشرقية</li><li>اختيار المهتمين الجادين وتنسيق المعاينات</li><li>تفاوض وإتمام الصفقة</li></ul><span class="go">شاهد مشاريعنا <span class="arr">←</span></span></a>
   </div>
 </div></section>
 
@@ -89,11 +89,11 @@ P.home=()=>`
 
 <section class="fees"><div class="wrap">
   <div class="fees-in">
-    <div class="fees-t"><span class="eyebrow">أتعاب إدارة الأملاك</span><h2>أتعابنا معلنة، ومن المحصّل فقط.</h2><p>لا رسوم على وحدة شاغرة ولا على إيجار لم يُحصَّل. اختر الباقة، واحسب الفرق على عقارك قبل أن تتصل بنا.</p><a class="btn btn-w" href="#management" data-go="management" data-sec="calc">احسب على عقارك <span class="arr">←</span></a><small class="fees-lic">مرخّصة من الهيئة العامة للعقار · فال <a href="https://aqari.rega.gov.sa/Inquires/Brokerage/Details/1200051292" target="_blank" rel="noopener"><bdi class="en" dir="ltr">1200051292</bdi></a></small></div>
+    <div class="fees-t"><span class="eyebrow">أتعاب إدارة الأملاك</span><h2>أتعابنا معلنة، ومن الإيجار المحصّل فقط.</h2><p>لا رسوم على وحدة غير مؤجرة ولا على إيجار لم يُحصَّل. اختر الباقة، واحسب الفرق على عقارك قبل أن تتصل بنا.</p><a class="btn btn-w" href="#management" data-go="management" data-sec="calc">احسب على عقارك <span class="arr">←</span></a><small class="fees-lic">مرخّصة من الهيئة العامة للعقار · فال <a href="https://aqari.rega.gov.sa/Inquires/Brokerage/Details/1200051292" target="_blank" rel="noopener"><bdi class="en" dir="ltr">1200051292</bdi></a></small></div>
     <ul class="fees-l" role="list">
       <li><b class="num">5<small>%</small></b><span><strong>التحصيل</strong>تحصيل الإيجارات ومتابعة المتأخرات</span></li>
       <li><b class="num">7<small>%</small></b><span><strong>التحصيل والعقود</strong>ويضاف إليها توثيق العقود ومتابعة تجديدها</span></li>
-      <li class="hi"><b class="num">10<small>%</small></b><span><strong>الإدارة الشاملة</strong>ويضاف إليها تسويق الوحدات الشاغرة فور خلوّها</span></li>
+      <li class="hi"><b class="num">10<small>%</small></b><span><strong>الإدارة الشاملة</strong>ويضاف إليها تسويق الوحدة فور خروج المستأجر</span></li>
     </ul>
   </div>
 </div></section>
@@ -110,11 +110,11 @@ P.home=()=>`
 </div></section>
 
 <section class="sandbg"><div class="wrap">
-  <div class="sec-head"><span class="eyebrow">لماذا تُدار</span><h2>العمل في الخلفية، والنتيجة أمامك</h2><p>اسمنا فعلٌ مبني للمجهول عن قصد: نحن نعمل، وأنت ترى العائد.</p></div>
+  <div class="sec-head"><span class="eyebrow">لماذا تُدار</span><h2>نعمل عنك، والنتيجة أمامك</h2><p>اسمنا «تُدار» يعني أن عقارك يُدار عنك: نحن نعمل، وأنت ترى الدخل.</p></div>
   <div class="feat">
     <div>${I.report}<h3>شفافية كاملة</h3><p>كل ريال يدخل أو يُصرف مسجّل في تقريرك الشهري، مع صور الفواتير.</p></div>
     <div>${I.shield}<h3>عقود محكمة</h3><p>عقود موثّقة في منصة إيجار، وشروط واضحة تحمي حقّك وحق المستأجر.</p></div>
-    <div>${I.tenant}<h3>مستأجر مناسب</h3><p>نتحقق من المستأجر قبل التوقيع، فتقلّ المتأخرات ويطول بقاؤه.</p></div>
+    <div>${I.tenant}<h3>مستأجر مناسب</h3><p>نتحقق من المستأجر قبل التوقيع، فيقلّ تأخر الدفع وتطول مدة بقائه.</p></div>
   </div>
 </div></section>
 ${cta}`;

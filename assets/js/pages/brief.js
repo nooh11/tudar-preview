@@ -1,7 +1,7 @@
 /* تُدار العقارات — tudar.sa
    أخبرنا عن مشروعك */
 P.brief=()=>`
-<section class="phead"><div class="wrap"><div class="crumb">الرئيسية / أخبرنا عن مشروعك</div><h1>أخبرنا عن عقارك</h1><p>ثلاث خطوات، دقيقتان تقريبًا. يتواصل معك مدير حساب خلال يوم عمل.</p></div><span class="deco" data-logo="markrev"></span></section>
+<section class="phead"><div class="wrap"><div class="crumb">الرئيسية / أخبرنا عن مشروعك</div><h1>أخبرنا عن عقارك</h1><p>ثلاث خطوات، دقيقتان تقريبًا. يتواصل معك أحد فريقنا خلال يوم عمل.</p></div><span class="deco" data-logo="markrev"></span></section>
 <section><div class="wrap">
   <form class="form-shell" id="bf" novalidate>
     <aside class="form-side"><h2>طلبك</h2><ol class="progress" id="prog" aria-label="خطوات الطلب" style="list-style:none;margin:0;padding:0"><li class="on" aria-current="step">نوع الخدمة</li><li>بيانات العقار</li><li>بيانات التواصل</li></ol><ul class="ben"><li>فحص مجاني لعقارك</li><li>خطة مخصصة لكل عقار</li><li>تسويق على أهم المنصات العقارية</li></ul><p style="opacity:.7;font-size:15px">بياناتك تُستخدم للتواصل معك بخصوص عقارك فقط.</p></aside>
@@ -22,7 +22,7 @@ P.brief=()=>`
           <div class="in"><label for="phood">الحي</label><input id="phood" autocomplete="off" placeholder="مثال: حي الشاطئ"></div>
           <div class="in"><label for="punits">عدد الوحدات</label><input id="punits" type="number" min="1" inputmode="numeric" placeholder="12" class="en"></div>
         </div>
-        <div class="in"><label for="pnote">ملاحظات</label><textarea id="pnote" rows="3" placeholder="حالة العقار، عدد الشواغر، الدخل الحالي، أو ما تريد تطويره"></textarea></div>
+        <div class="in"><label for="pnote">ملاحظات</label><textarea id="pnote" rows="3" placeholder="حالة العقار، عدد الوحدات الفاضية، الدخل الحالي، أو ما تريد تطويره"></textarea></div>
       </div>
       <div class="fs" data-step="2" hidden>
         <h3 style="color:var(--burg);font-size:22px">كيف نتواصل معك؟</h3>
