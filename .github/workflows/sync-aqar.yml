@@ -1,0 +1,23 @@
+name: مزامنة عقار
+on:
+  schedule:
+    - cron: '17 * * * *'   # كل ساعة
+  workflow_dispatch:
+  push:
+    paths: ['.github/scripts/sync-aqar.mjs', '.github/workflows/sync-aqar.yml']
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - run: node .github/scripts/sync-aqar.mjs
+      - name: حفظ النتيجة
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898333+github-actions[bot]@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet || (git commit -m "تحديث العروض من عقار" && git push)
