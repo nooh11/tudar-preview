@@ -23,7 +23,7 @@
 - **نسخة الإنتاج:** `node tools/make-production.mjs dist` يجهّز مجلد dist بدون noindex وبملف robots النهائي، ويفحصه قبل الرفع.
 
 ## قيم ناقصة
-ابحث في الملفات عن: `{{GTM_ID}}` و`{{CR_NUMBER}}` و`{{OFFICE_ADDRESS}}` و`{{OPENING_HOURS}}`.
+ابحث في الملفات عن: `{{GTM_ID}}` و`{{OFFICE_ADDRESS}}` و`{{OPENING_HOURS}}`.
 
 ## الأدلة المخطط لها (/guides)
 1. `/guides/shared-electricity-meter-split`: تقسيم فاتورة الكهرباء على العداد المشترك
