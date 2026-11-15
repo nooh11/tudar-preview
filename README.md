@@ -22,8 +22,8 @@
 - **القوالب غير المنشورة** في `_templates/`: قالب مقال للأدلة (`/guides/<slug>`)، وقالب صفحة مدينة (`/property-management/<city>`).
 - **نسخة الإنتاج:** `node tools/make-production.mjs dist` يجهّز مجلد dist بدون noindex وبملف robots النهائي، ويفحصه قبل الرفع.
 
-## قيم ناقصة
-ابحث في الملفات عن: `{{GTM_ID}}` و`{{OPENING_HOURS}}`.
+## القياس
+Google Tag Manager: `GTM-K3HG7TJR` (في رأس كل صفحة). كل أدوات القياس والبكسلات تُضاف من داخل GTM.
 
 ## الأدلة المخطط لها (/guides)
 1. `/guides/shared-electricity-meter-split`: تقسيم فاتورة الكهرباء على العداد المشترك
