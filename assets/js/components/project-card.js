@@ -29,7 +29,7 @@ function openProject(id,opener){
      <div class="fld"><label for="fY">مدة التمويل <b id="fYv"></b></label><input type="range" id="fY" min="5" max="25" value="25"></div>
      <div class="fin-out"><span>القسط الشهري التقديري</span><b class="num" id="fOut">—</b><small>بافتراض نسبة سنوية 5%. تقدير توضيحي، والقسط الفعلي تحدده جهة التمويل.</small></div>
    </div>`:""}
-   <a class="btn btn-o" href="#brief" data-go="brief" style="justify-self:start">سجّل اهتمامك <span class="arr">←</span></a>
+   <a class="btn btn-o" href="free-inspection" style="justify-self:start">سجّل اهتمامك <span class="arr">←</span></a>
   </div></div>`;
   mountModal(m,opener);
   if(priced.length){const M=m.querySelector("#fM"),D=m.querySelector("#fD"),Y=m.querySelector("#fY");

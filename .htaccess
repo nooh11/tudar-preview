@@ -13,3 +13,21 @@ AddType image/svg+xml .svg
   ExpiresByType application/javascript "access plus 1 week"
 </IfModule>
 ErrorDocument 404 /404.html
+
+# نسخة واحدة: https://tudar.sa (تحويل 301 من http ومن www)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off [OR]
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteRule ^ https://tudar.sa%{REQUEST_URI} [L,R=301]
+  # الروابط بدون .html: الطلب المباشر لـ /x.html يُحوَّل إلى /x، و/index.html إلى /
+  RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+  RewriteRule ^ / [L,R=301]
+  RewriteCond %{THE_REQUEST} \s/+([^\s?]+?)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [L,R=301]
+  # ثم /property-management يعرض property-management.html
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
+</IfModule>

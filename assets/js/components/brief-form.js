@@ -1,7 +1,7 @@
 /* تُدار العقارات — tudar.sa
    نموذج «أخبرنا عن مشروعك» (يرسل الطلب إلى Google Sheets عبر core/leads.js، وإن لم يُضبط الرابط يكمل على واتساب) */
 /* اختيار الخدمة مسبقًا عند القدوم من زر مثل «اطلب فحصًا مجانيًا» (data-svc="dev") */
-function preSvc(){const m={pm:"svc1",mk:"svc2",dev:"svc3"}[window.PRESVC];const r=m&&document.getElementById(m);if(r){r.checked=true;window.PRESVC=null}}
+function preSvc(){if(!window.PRESVC)window.PRESVC=new URLSearchParams(location.search).get("svc");const m={pm:"svc1",mk:"svc2",dev:"svc3"}[window.PRESVC];const r=m&&document.getElementById(m);if(r){r.checked=true;window.PRESVC=null}}
 function initForm(){
   preSvc();
   let step=0;const f=document.getElementById("bf");const steps=[...f.querySelectorAll("[data-step]")];
@@ -29,11 +29,12 @@ function initForm(){
     const val=id=>document.getElementById(id).value.trim();
     const data={name:nm,phone:ph,service:svc,ptype:val("ptype"),city:val("pcity"),hood:val("phood"),units:val("punits"),time:val("ctime"),details:val("pnote")};
     const sent=lead(svc,nm,ph,[`${data.ptype} في ${data.city}${data.hood?"، "+data.hood:""}`,data.units?data.units+" وحدات":"",data.details,"أفضل وقت: "+data.time].filter(Boolean).join(" · "));
+    track("generate_lead",{form_name:"free_inspection",service:svc,lead_saved:!!sent,...utmData()});
     const waTxt=`السلام عليكم، أنا ${nm}.\nالخدمة: ${svc}\nالعقار: ${data.ptype} في ${data.city}${data.hood?"، "+data.hood:""}${data.units?"\nعدد الوحدات: "+data.units:""}${data.details?"\nتفاصيل: "+data.details:""}\nجوالي: ${ph}، وأفضل وقت للتواصل ${data.time}.`;
     const wa="https://wa.me/966534977299?text="+encodeURIComponent(waTxt);
     setTimeout(()=>{
     document.getElementById("fm").innerHTML=sent
-      ?`<div class="done" role="status">${I.shield}<h3 tabindex="-1" id="doneH">وصلنا طلبك يا ${esc_(nm)}</h3><p style="color:var(--muted)">يتواصل معك أحد فريقنا خلال يوم عمل على <b class="en">${ph}</b>.</p><div class="sum"><span>الخدمة: <b>${esc_(svc)}</b></span><span>العقار: <b>${v("ptype")} في ${v("pcity")}${v("phood")?" · "+v("phood"):""}</b></span>${v("punits")?`<span>الوحدات: <b class="en">${v("punits")}</b></span>`:""}</div><div class="ls-acts"><a class="btn btn-g" href="${wa}" target="_blank" rel="noopener">تبي أسرع؟ كلمنا واتساب</a><a class="btn btn-b" href="#projects" data-go="projects">تصفّح العقارات</a></div></div>`
+      ?`<div class="done" role="status">${I.shield}<h3 tabindex="-1" id="doneH">وصلنا طلبك يا ${esc_(nm)}</h3><p style="color:var(--muted)">يتواصل معك أحد فريقنا خلال يوم عمل على <b class="en">${ph}</b>.</p><div class="sum"><span>الخدمة: <b>${esc_(svc)}</b></span><span>العقار: <b>${v("ptype")} في ${v("pcity")}${v("phood")?" · "+v("phood"):""}</b></span>${v("punits")?`<span>الوحدات: <b class="en">${v("punits")}</b></span>`:""}</div><div class="ls-acts"><a class="btn btn-g" href="${wa}" target="_blank" rel="noopener">تبي أسرع؟ كلمنا واتساب</a><a class="btn btn-b" href="projects">تصفّح العقارات</a></div></div>`
       :`<div class="done" role="status">${I.shield}<h3 tabindex="-1" id="doneH">آخر خطوة يا ${esc_(nm)}</h3><p style="color:var(--muted)">اضغط الزر، وتنفتح لك رسالة واتساب جاهزة فيها كل بياناتك. أرسلها ونتواصل معك خلال يوم عمل.</p><div class="sum"><span>الخدمة: <b>${esc_(svc)}</b></span><span>العقار: <b>${v("ptype")} في ${v("pcity")}${v("phood")?" · "+v("phood"):""}</b></span></div><a class="btn btn-o" href="${wa}" target="_blank" rel="noopener" style="justify-self:start">أرسل الطلب على واتساب</a></div>`;
     document.getElementById("doneH").focus();
     prog.forEach(p=>{p.classList.add("on");p.removeAttribute("aria-current")});

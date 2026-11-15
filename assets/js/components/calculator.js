@@ -16,7 +16,9 @@ function initCalc(){
   const q={vac:2,late:5};
   const R=n=>fmt(n)+" ريال";
   const mo=m=>m<=0?"":m<1?"(أقل من شهر)":m===1?"(شهر)":m===2?"(شهرين)":"("+fmt(m)+" شهور)";
+  let ups=0;
   const up=()=>{
+    if(ups++===1)track("calculator_used");   /* أول تغيير من الزائر (النداء الأول عند فتح الصفحة) */
     const U=+u.value,rent=+r.value,gross=U*rent,p=PK[k];
     /* تديره بنفسك */
     const v1=U*rent*q.vac/12,l1=(gross-v1)*q.late/100,n1=gross-v1-l1;

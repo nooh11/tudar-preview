@@ -1,6 +1,27 @@
-// تُدار العقارات — قراءة إعلانات المعلن من تطبيق عقار وحفظها في data/listings.json
-// يشغّلها GitHub كل ساعة (.github/workflows/sync-aqar.yml)
+// تُدار العقارات — تحديث العقارات من حساب الشركة في تطبيق عقار
+//
+// التشغيل:  node sync-aqar.mjs [مجلد الموقع]
+//   بدون مجلد: يستخدم المجلد الحالي (في GitHub: جذر المستودع، وتشغّله المهمة .github/workflows/sync-aqar.yml).
+//   على سيرفر: مرّر مجلد الموقع المنشور، مثل:  node sync-aqar.mjs /var/www/tudar.sa   (Node.js 18+، بلا مكتبات)
+//
+// ماذا يكتب داخل مجلد الموقع:
+//   data/listings.json           العقارات بصيغة JSON (يقرأها جدول قوقل أيضًا)
+//   data/listings.js             نفس العقارات للمتصفح (const L=[...])
+//   data/sync-status.json        نتيجة آخر تشغيل
+//   index.html                   بطاقات أول 3 عقارات، وعدد العروض والمدن
+//   real-estate-marketing.html   بطاقات أول 3 عقارات
+//   projects.html                كل البطاقات، وأزرار التصفية، والأعداد، وبيانات العقارات لمحركات البحث (JSON-LD)
+//   *.html                       رقم نسخة ملف العقارات (data/listings.js?v=...)
+//   sitemap.xml                  تاريخ آخر تحديث للصفحات الثلاث
+// الأجزاء التي يكتبها محصورة بين تعليقات مثل <!--LISTINGS-ALL--> و<!--/LISTINGS-ALL-->، فلا تحذف هذه التعليقات.
+// البطاقات تُبنى بنفس كود الموقع (assets/js/components/cards.js)، فأي تعديل على شكل البطاقة يظهر هنا تلقائيًا.
+// إن فشلت القراءة من عقار: يبقى كل شيء على آخر نسخة ناجحة، ويخرج السكربت برمز خطأ 1.
+
 import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
+import {execSync} from 'node:child_process';
+const SITE = path.resolve(process.argv[2] || '.');
 const USER_ID = 298306, PROFILE = `https://sa.aqar.fm/user/${USER_ID}`;
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36';
 const Q = 'query findListings($size:Int $from:Int $where:WhereInput){Web{find(size:$size from:$from where:$where){total listings{id title path category city district imgs price rent_period area beds wc livings content address published}}}}';
@@ -41,9 +62,55 @@ function map(a) {
     price: Math.round(Number(a.price) || 0), area: Number(a.area) || 0, beds: Number(a.beds) || 0, baths: Number(a.wc) || 0,
     img: a.imgs?.length ? 'https://images.aqar.fm/webp/750x0/props/' + a.imgs[0] : '', note, url: 'https://sa.aqar.fm/ad/' + a.id};
 }
+
 const raw = (await gql()) || (await html());
-const ok = !!raw?.length;
-fs.mkdirSync('data', {recursive: true});
-if (ok) fs.writeFileSync('data/listings.json', JSON.stringify({updated: new Date().toISOString(), listings: raw.filter(a => a?.id && a.published !== false).map(map)}));
-fs.writeFileSync('data/sync-status.json', JSON.stringify({at: new Date().toISOString(), ok, count: ok ? raw.length : 0, log}, null, 1));
-console.log(log.join('\n'), '\nok:', ok, raw?.length);
+const list = (raw || []).filter(a => a?.id && a.published !== false).map(map);
+const ok = list.length > 0;
+const now = new Date().toISOString();
+const save = (rel, data) => { const f = path.join(SITE, rel), tmp = f + '.tmp'; fs.mkdirSync(path.dirname(f), {recursive: true}); fs.writeFileSync(tmp, data); fs.renameSync(tmp, f); };
+
+if (ok) {
+  list.slice(0, 3).forEach(x => { x.top = true; });          // أول 3 عقارات تظهر في الرئيسية
+  save('data/listings.json', JSON.stringify({updated: now, listings: list}));
+  save('data/listings.js', 'const L=' + JSON.stringify(list) + ';\n');
+
+  // نبني البطاقات بنفس كود الموقع
+  const noop = () => {};
+  const ctx = {Math, JSON, URL, encodeURIComponent, decodeURIComponent, setTimeout: noop, matchMedia: () => ({matches: false}),
+    location: {href: 'https://tudar.sa/', search: ''}, document: {addEventListener: noop, getElementById: () => null, querySelectorAll: () => [], querySelector: () => null}};
+  ctx.window = ctx; vm.createContext(ctx);
+  const js = rel => vm.runInContext(fs.readFileSync(path.join(SITE, 'assets/js', rel), 'utf8'), ctx, {filename: rel});
+  js('core/brand.js'); js('core/facade.js');
+  vm.runInContext('const L=' + JSON.stringify(list) + ';', ctx);
+  js('data/live-listings.js'); js('components/calculator.js'); js('components/cards.js');
+  const card = vm.runInContext('cardHTML', ctx), chips = vm.runInContext('lfChips', ctx)();
+  const top3 = list.filter(x => x.top).slice(0, 3).map(card).join('');
+  const cities = new Set(list.map(x => x.city)).size, sale = list.filter(x => x.type === 'sale').length, rent = list.length - sale;
+  const ld = {'@context': 'https://schema.org', '@type': 'ItemList', name: 'عقارات للبيع والإيجار تسوّقها تُدار العقارات', numberOfItems: list.length,
+    itemListElement: list.map((x, i) => ({'@type': 'ListItem', position: i + 1, item: {'@type': 'RealEstateListing', name: x.t, url: x.url, ...(x.img ? {image: x.img} : {}),
+      description: `${x.label} ${x.type === 'rent' ? 'للإيجار' : 'للبيع'} في ${x.hood}، ${x.city}${x.area ? `، المساحة ${x.area} م²` : ''}`,
+      offers: {'@type': 'Offer', price: x.price, priceCurrency: 'SAR', businessFunction: x.type === 'rent' ? 'http://purl.org/goodrelations/v1#LeaseOut' : 'http://purl.org/goodrelations/v1#Sell'}}}))};
+  const block = (h, key, inner) => {
+    const re = new RegExp(`(<!--${key}-->)[\\s\\S]*?(<!--/${key}-->)`);
+    if (!re.test(h)) { log.push(`لم أجد <!--${key}--> في الصفحة`); return h; }
+    return h.replace(re, (m, a, b) => a + inner + b);
+  };
+  const count = (h, k, v) => h.replace(new RegExp(`(data-cnt="${k}"[^>]*>)\\d+(<)`, 'g'), `$1${v}$2`);
+  const counts = h => count(count(count(count(h, 'ls', list.length), 'cities', cities), 'sale', sale), 'rent', rent);
+  const v = Date.now().toString(36);
+  const edit = (rel, fn) => { const f = path.join(SITE, rel); if (!fs.existsSync(f)) return; save(rel, fn(fs.readFileSync(f, 'utf8'))); };
+  const pages = fs.readdirSync(SITE).filter(f => f.endsWith('.html'));
+  for (const p of pages) edit(p, h => {
+    h = h.replace(/data\/listings\.js\?v=\w+/g, 'data/listings.js?v=' + v);
+    if (p === 'index.html') h = block(h, 'LISTINGS-HOME', top3);
+    if (p === 'real-estate-marketing.html') h = block(h, 'LISTINGS-MKT', top3);
+    if (p === 'projects.html') h = block(block(block(h, 'LISTINGS-ALL', list.map(card).join('')), 'LISTINGS-FILTERS', chips), 'LISTINGS-LD', `<script type="application/ld+json">${JSON.stringify(ld)}</script>`);
+    return counts(h);
+  });
+  edit('sitemap.xml', h => h.replace(/(<loc>https:\/\/tudar\.sa\/(?:projects|real-estate-marketing)?<\/loc>\s*<lastmod>)[^<]*/g, `$1${now.slice(0, 10)}`));
+}
+save('data/sync-status.json', JSON.stringify({at: now, ok, count: list.length, log}, null, 1));
+// في GitHub: نجهّز الصفحات المعدّلة للحفظ، فتحفظها المهمة مع مجلد data
+if (process.env.GITHUB_ACTIONS) { try { execSync('git add -A -- "*.html" sitemap.xml data', {cwd: SITE, stdio: 'inherit'}); } catch (e) { log.push('git add: ' + e.message); } }
+console.log(log.join('\n'), '\nok:', ok, list.length, '→', SITE);
+if (!ok) process.exit(1);

@@ -1,1 +1,43 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url=/"><title>تُدار العقارات</title></head><body><a href="/">العودة إلى الصفحة الرئيسية</a></body></html>
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>الصفحة غير موجودة | تُدار العقارات</title>
+<meta name="description" content="الصفحة التي تبحث عنها غير موجودة. تصفّح خدمات تُدار العقارات أو اطلب فحص عمارتك مجانًا.">
+<!-- صفحة 404 مستقلة: تظهر لأي رابط غير موجود في أي مستوى، لذلك لا تحمّل ملفات الموقع، وروابطها تُحسب من جذر الموقع -->
+<style>
+  :root{--burg:#4A0A2E;--orange:#E05526;--sand:#F3E6D5;--ink:#0A2947}
+  @font-face{font-family:"Noor";src:url(/assets/fonts/Noor-Bold.woff2) format("woff2");font-weight:700;font-display:swap}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;display:grid;place-items:center;background:#FBF6EE;color:var(--ink);font-family:"Noor",system-ui,sans-serif;padding:24px}
+  main{max-width:640px;text-align:center}
+  .mark{font-size:40px;font-weight:700;color:var(--burg);letter-spacing:.02em}
+  .mark small{display:block;font-size:13px;letter-spacing:.3em;color:var(--orange)}
+  h1{font-size:clamp(32px,6vw,52px);color:var(--burg);margin:28px 0 12px}
+  p{font-size:18px;line-height:1.8;margin:0 0 28px}
+  nav{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+  a{display:inline-flex;align-items:center;min-height:48px;padding:10px 22px;border-radius:999px;text-decoration:none;font-size:16px;color:var(--burg);border:1px solid rgba(74,10,46,.25);background:#fff}
+  a.main{background:var(--orange);border-color:var(--orange);color:#fff}
+</style>
+</head>
+<body>
+<main>
+  <div class="mark">تُدار<small>TUDAR</small></div>
+  <h1>الصفحة غير موجودة</h1>
+  <p>يمكن أن الرابط تغيّر أو انكتب بشكل خاطئ. هذه أهم صفحاتنا:</p>
+  <nav aria-label="أهم الصفحات">
+    <a class="main" href="/free-inspection" data-to="free-inspection">افحص عمارتك مجانًا ←</a>
+    <a href="/property-management" data-to="property-management">إدارة الأملاك في الشرقية</a>
+    <a href="/real-estate-marketing" data-to="real-estate-marketing">التسويق العقاري</a>
+    <a href="/" data-to="">الصفحة الرئيسية</a>
+  </nav>
+</main>
+<script>
+/* في نسخة المعاينة على GitHub يكون الموقع تحت /tudar-preview/ */
+(function(){var b=location.pathname.indexOf("/tudar-preview/")===0?"/tudar-preview/":"/";
+document.querySelectorAll("[data-to]").forEach(function(a){a.href=b+a.getAttribute("data-to")})})();
+</script>
+</body>
+</html>

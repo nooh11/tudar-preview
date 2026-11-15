@@ -12,7 +12,7 @@ function lead(kind,name,phone,details,prop){
   if(!LEAD_URL)return false;
   /* الجوال بمسافات (059 173 4948) حتى يبقى نصًّا في الجدول ولا يضيع الصفر */
   const ph=(phone||"").replace(/^(\d{3})(\d{3})(\d{4})$/,"$1 $2 $3");
-  const body=JSON.stringify({kind,name:name||"",phone:ph,prop:prop||"",details:(details||"").slice(0,600)});
+  const body=JSON.stringify({kind,name:name||"",phone:ph,prop:prop||"",details:(details||"").slice(0,600),...utmData()});   /* utm_*: مصدر الزيارة (core/tracking.js) */
   try{
     if(navigator.sendBeacon&&navigator.sendBeacon(LEAD_URL,new Blob([body],{type:"text/plain"})))return true;
     fetch(LEAD_URL,{method:"POST",mode:"no-cors",keepalive:true,headers:{"Content-Type":"text/plain"},body});return true;
