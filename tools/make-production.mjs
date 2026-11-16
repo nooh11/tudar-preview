@@ -11,8 +11,9 @@
 // ويطبع تنبيهًا بالقيم الناقصة بصيغة {{...}} إن وُجدت (لا يتوقف عليها).
 import fs from 'node:fs';
 import path from 'node:path';
+import {fileURLToPath} from 'node:url';
 
-const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.resolve(process.argv[2] || 'dist');
 const SKIP = new Set(['.git', '.github', 'tools', '_templates', 'README.md', '.nojekyll', 'robots.production.txt', 'node_modules', path.basename(OUT)]);
 const SKIP_FILES = new Set(['data/sync-status.json']);
