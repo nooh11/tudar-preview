@@ -1,8 +1,9 @@
 {
- "at": "2026-11-18T21:23:44.241Z",
+ "at": "2026-11-19T06:27:22.572Z",
  "ok": true,
  "count": 36,
  "log": [
-  "GraphQL https://sa.aqar.fm/graphql → 200"
+  "sheet → 200",
+  "source: sheet · 36"
  ]
 }
