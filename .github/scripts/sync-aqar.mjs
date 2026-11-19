@@ -1,4 +1,4 @@
-// تُدار العقارات — تحديث العقارات من حساب الشركة في تطبيق عقار
+// تُدار العقارات — تحديث العقارات في صفحات الموقع (من ورقة «العروض» في جدول قوقل، أو من تطبيق عقار)
 //
 // التشغيل:  node sync-aqar.mjs [مجلد الموقع]
 //   بدون مجلد: يستخدم المجلد الحالي (في GitHub: جذر المستودع، وتشغّله المهمة .github/workflows/sync-aqar.yml).
@@ -22,6 +22,13 @@ import path from 'node:path';
 import vm from 'node:vm';
 import {execSync} from 'node:child_process';
 const SITE = path.resolve(process.argv[2] || '.');
+
+// ===== مصدر العقارات =====
+// 'sheet': ورقة «العروض» في جدول قوقل، وتُحدَّث يدويًا (الوضع الحالي: تطبيق عقار يرفض القراءة الآلية من نوفمبر 2026).
+// 'aqar' : تطبيق عقار مباشرة. للرجوع له: غيّر القيمة هنا إلى 'aqar'.
+const SOURCE = process.env.LISTINGS_SOURCE || 'sheet';
+// رابط جدول قوقل (نفس LEAD_URL في assets/js/core/leads.js) ويرجع العقارات الظاهرة في ورقة «العروض»
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxeeGfi3iBwic2Rm7YyoqgGYTMo-ZGVj5OpI7cyf8p3vNxee1n2nw62LUBmywOFFaDycg/exec?listings=1';
 const USER_ID = 298306, PROFILE = `https://sa.aqar.fm/user/${USER_ID}`;
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36';
 const Q = 'query findListings($size:Int $from:Int $where:WhereInput){Web{find(size:$size from:$from where:$where){total listings{id title path category city district imgs price rent_period area beds wc livings content address published}}}}';
@@ -52,6 +59,17 @@ async function html() {
     return JSON.parse(big.slice(i + k.length, j + 1));
   } catch (e) { log.push(`profile error ${e.message}`); return null; }
 }
+async function sheet() {
+  try {
+    const r = await fetch(SHEET_URL + '&t=' + Date.now(), {redirect: 'follow'});
+    const t = await r.text(); log.push(`sheet → ${r.status}`);
+    if (!r.ok) return [];
+    const arr = JSON.parse(t)?.listings || [];
+    return arr.filter(x => x && x.id && x.price).map(x => ({...x, id: Number(x.id), top: x.top === true,
+      kind: x.kind || (/فيلا|استراحة|دوبلكس|شاليه/.test(x.label) ? 'villa' : /أرض/.test(x.label) ? 'land' : 'building'),
+      url: x.url || 'https://sa.aqar.fm/ad/' + x.id}));
+  } catch (e) { log.push(`sheet error ${e.message}`); return []; }
+}
 function map(a) {
   const title = String(a.title || ''), mm = title.match(/^(.+?)\s+لل(بيع|إيجار)/);
   const label = mm ? mm[1] : 'عقار', type = (mm && mm[2] === 'إيجار') || a.rent_period ? 'rent' : 'sale', hood = a.district || '';
@@ -63,14 +81,16 @@ function map(a) {
     img: a.imgs?.length ? 'https://images.aqar.fm/webp/750x0/props/' + a.imgs[0] : '', note, url: 'https://sa.aqar.fm/ad/' + a.id};
 }
 
-const raw = (await gql()) || (await html());
-const list = (raw || []).filter(a => a?.id && a.published !== false).map(map);
+let list;
+if (SOURCE === 'sheet') list = await sheet();
+else { const raw = (await gql()) || (await html()); list = (raw || []).filter(a => a?.id && a.published !== false).map(map); }
+log.push(`source: ${SOURCE} · ${list.length}`);
 const ok = list.length > 0;
 const now = new Date().toISOString();
 const save = (rel, data) => { const f = path.join(SITE, rel), tmp = f + '.tmp'; fs.mkdirSync(path.dirname(f), {recursive: true}); fs.writeFileSync(tmp, data); fs.renameSync(tmp, f); };
 
 if (ok) {
-  list.slice(0, 3).forEach(x => { x.top = true; });          // أول 3 عقارات تظهر في الرئيسية
+  if (!list.some(x => x.top)) list.slice(0, 3).forEach(x => { x.top = true; });   // 3 عقارات للرئيسية: المعلَّمة «مميز»، وإلا أول 3
   save('data/listings.json', JSON.stringify({updated: now, listings: list}));
   save('data/listings.js', 'const L=' + JSON.stringify(list) + ';\n');
 
